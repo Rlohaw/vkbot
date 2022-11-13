@@ -85,6 +85,11 @@ class Bot:
                     anc.rate_anecdot(self.user_id, text)
                     self.give_anc()
 
+                elif text:
+                    k = VkKeyboard()
+                    k.add_button('Начать', VkKeyboardColor.PRIMARY)
+                    self.sender(self.user_id, 'Нажми на кнопку', k)
+
 
 while True:
     try:
