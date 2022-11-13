@@ -7,7 +7,7 @@ from keys import main_token as tk
 
 
 class Anecdot:
-    def __init__(self, host='192.168.100.14', user='root', password='75645', database='anekdots'):
+    def __init__(self, host='localhost', user='root', password='75645', database='anekdots'):
         self.mydb = mysql.connector.connect(host=host, user=user, password=password, database=database)
         self.cursor = self.mydb.cursor()
 
@@ -86,4 +86,8 @@ class Bot:
                     self.give_anc()
 
 
-Bot(tk).event()
+while True:
+    try:
+        Bot(tk).event()
+    except Exception as e:
+        print(e)
