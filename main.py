@@ -4,6 +4,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import mysql.connector
 from random import randint
 from keys import main_token as tk
+from bs4 import BeautifulSoup
 
 
 class Anecdot:
@@ -19,6 +20,8 @@ class Anecdot:
         res = self.cursor.fetchall()[0][0]
         self.cursor.execute(f"insert into {str(id) + '_grades'}(number, grade) values ({number}, {-1})")
         self.mydb.commit()
+        soup = BeautifulSoup(res, 'lxml')
+        res = str(soup.text)
         return res
 
     def rate_anecdot(self, id, grade):
